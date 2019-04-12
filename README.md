@@ -1,7 +1,7 @@
 
 
 # Learning from personal longitudinal dialog data
-This is a project to allow people to convert their Google Hangouts, Facebook Messenger, iMessage, and SMS Backup (Android Application) messages into a single format and explore this data.
+This is a project to allow people to convert their Google Hangouts, Facebook Messenger, iMessage, Instagram, and SMS Backup (Android Application) messages into a single format and explore this data. Code exists to set up and run experiments to predict common next messages, response times, and relationship attributes.
 
 
 ## Prerequisites
@@ -25,7 +25,7 @@ If you want to run prediction experiments you must install pytorch. This is not 
 Also, if you want to run experiments you need to scikit and download the [Common Crawl GloVe embeddings](http://nlp.stanford.edu/data/glove.840B.300d.zip) and change your EMBEDDING_LOCATION in the utils.py file to point to where you have them downloaded.
 
 ## To download your data
-You can download Google Hangouts data from [their takeout page](https://takeout.google.com/settings/takeout) and Facebook data if you follow [their download instructions](https://www.facebook.com/help/302796099745838). Both services will take some time to generate an archive of your data. Your iMessage data is probably stored in ~/Library/Messages/chat.db.
+You can download Google Hangouts data from [their takeout page](https://takeout.google.com/settings/takeout) and Facebook data if you follow [their download instructions](https://www.facebook.com/help/302796099745838). Both services will take some time to generate an archive of your data. Your iMessage data is probably stored in ~/Library/Messages/chat.db. Instagram has a link to download your data on their [privacy and security page](https://www.instagram.com/accounts/privacy_and_security/).
 
 I have noticed that Google Hangouts sometimes does not download all of your messages if you select other things to download at the same time. I click the 'Select None' button and then click the Google Hangouts button to make sure that is the only one I am downloading.
 
@@ -33,21 +33,24 @@ I have noticed that Google Hangouts sometimes does not download all of your mess
 ## Generating Statistics
 
 ```python
-f_my_name, p_fix = ['Charlie Welch', 'charlie']
-GOOGLE_PATH = ''
-FACEBOOK_PATH = ''
-IMESSAGE_PATH = ''
+my_name = 'Charlie Welch', '+12345678900', 'cfwelch'
+prefix = 'charlie'
+
+GOOGLE_PATH = '/path/to/Hangouts.json'
+FACEBOOK_PATH = '/path/to/facebook/messages/'
+IMESSAGE_PATH = '/path/to/imessage-chat/chat.db'
+INSTAGRAM_PATH = '/path/to/instagram/messages.json'
 ```
 
 1. Edit the preceding lines in utils.py
 
-    Edit f_my_name to the name you use with your social media accounts. p_fix is used for directory names so you can just change that to 'firstname' (Note: This exists in case you want to separate your workspace to work with multiple peoples data. In order to do this you just need to change the names whenever you switch). The Facebook, iMessage, and Google paths should be changed to wherever your data is.
+    Edit my_name to the name you use with your social media accounts. This a comma separated list of the way your name shows up in each messenger. prefix is used for directory names so you can just change that to 'firstname' (Note: This exists in case you want to separate your workspace to work with multiple peoples data. In order to do this you just need to change the names whenever you switch). The Facebook, iMessage, Instagram, and Google paths should be changed to wherever your data is. These are also comma separated lists in case you have multiple accounts. If you do not have a path you can leave it as an empty string.
 
     Note: There is a variable named DATA_DIR. This is the name of a directory that will automatically be created and where generated data files will be placed. It is not the location of your downloaded data.
 
 2. Run user_annotator.py
 
-    This script will loop over your Google, iMessage, and Facebook files and ask you if the names of people are correct. If you talk to someone on both platforms you will want to change the name so that it combines the files when it is doing the analysis. The script will then ask you questions about each person in your dataset. These are questions that I thought would be interesting, which split people into different groups like family, co-workers, classmates, etc.
+    This script will loop over your Google, iMessage, Instagram, and Facebook files and ask you if the names of people are correct. If you talk to someone on both platforms you will want to change the name so that it combines the files when it is doing the analysis. The script will then ask you questions about each person in your dataset. These are questions that I thought would be interesting, which split people into different groups like family, co-workers, classmates, etc.
 
     When you are naming people you can view random samples of conversation with that person to try and figure out who it is if you aren't sure. If it ends up being difficult, you may have to search for the name or conversation on the appropriate platform to figure out who it is. If the conversation is with an automated service or is spam you can filter these messages so that the scripts will ignore them. Your options are presented at each step.
 
@@ -65,7 +68,7 @@ IMESSAGE_PATH = ''
 
 
 ## Data format
-The code does not currently support formats other than Google Hangouts and Facebook, but if a converter is written the other scripts will read all of the files from the data folder. The converted files should be separated by underscores and the first part should be the format name.
+The code does not currently support formats other than Google Hangouts, iMessage, Instagram, and Facebook, but if a converter is written the other scripts will read all of the files from the data folder. The converted files should be separated by underscores and the first part should be the format name.
 
 The common message file format is a binary msgpack object which contains:
 ```python
