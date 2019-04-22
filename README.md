@@ -141,7 +141,7 @@ If you use this code please cite:
 
 ```
 @inproceedings{Welch19LookWhosTalking,
-    author = {Welch, Charlie and Perez-Rosas, Veronica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
+    author = {Welch, Charlie and P{\'e}rez-Rosas, Ver{\'o}nica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
     title = {Look Who's Talking: Inferring Speaker Attributes from Personal Longitudinal Dialog},
     booktitle = {Proceedings of the 20th International Conference on Computational Linguistics and Intelligent Text Processing (CICLing)},
     address = {La Rochelle, France},
