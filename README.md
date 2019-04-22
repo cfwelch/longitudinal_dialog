@@ -134,3 +134,17 @@ If you run get_stats.py it will create a lot of files in your stats folder. This
 ## Adding user attributes
 
 You can add user attributes by editing the user_annotator.py script. There are two dictionaries named tag_set and tag_description listed at the top of the file. Edit tag_set to have the attribute name and a list of options for values of that attribute and edit the tag_description to contain instructions for the user. After you've done this, if you rerun the annotator it will ask you to annotate people who do not already have this attribute annotated.
+
+## Publication
+
+If you use this code please cite:
+
+```
+@inproceedings{Welch19LookWhosTalking,
+    author = {Welch, Charlie and Perez-Rosas, Veronica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
+    title = {Look Who's Talking: Inferring Speaker Attributes from Personal Longitudinal Dialog},
+    booktitle = {Proceedings of the 20th International Conference on Computational Linguistics and Intelligent Text Processing (CICLing)},
+    address = {La Rochelle, France},
+    year = {2019}
+}
+```
