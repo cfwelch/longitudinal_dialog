@@ -1,0 +1,6 @@
+# You can put nicknames in this file for people who are commonly referred to by another name.
+# The format is to have on each line the nickname in lowercase, then a colon, and then the full name as it appears in the tagged_people file and as the person was named when running the user annotator.
+# It is highly unlikely that you will be able to eliminate all noise name matches but you can add nicknames that you think will maximize detection with addition of minimal noise.
+# As an example, you could do something like the following (but without the comment).
+#john:Johnathan Smith
+

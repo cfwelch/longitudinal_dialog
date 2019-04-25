@@ -328,7 +328,7 @@ def main_stats(month_bins, top_utt):
 
     my_outgoing_msgs = sum([people_parts[k]["outgoing"] for k in people_parts.keys()])
     my_outgoing_words = sum([people_parts[k]["out_words"] for k in people_parts.keys()])
-    print("My ratio: " + str(my_outgoing_words*1.0/my_outgoing_msgs))
+    print("My ratio: " + str(my_outgoing_words*1.0/my_outgoing_msgs) if my_outgoing_msgs > 0 else 0)
 
     #for ind in range(len(liwc_keys)):
     #    print("For LIWC key " + liwc_keys[ind] + ":")

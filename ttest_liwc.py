@@ -136,7 +136,7 @@ def ttest_make_heat_maps(save_as_fig=False):
                 if group_key.startswith("relative age"):
                     neg_normed += sum([group_values[qp][q_val] for qp in neg_val]) * 1.0 / sum([group_values[qp]['words'] for qp in neg_val]) if sum([group_values[qp]['words'] for qp in neg_val]) > 0 else 0
                 else:
-                    neg_normed += group_values[neg_val][q_val] * 1.0 / group_values[neg_val]['words']
+                    neg_normed += group_values[neg_val][q_val] * 1.0 / group_values[neg_val]['words'] if group_values[neg_val]['words'] > 0 else 0
             print('\t' + lval + ': ' + str(pos_normed - neg_normed))
             trues[lval] = pos_normed - neg_normed
 

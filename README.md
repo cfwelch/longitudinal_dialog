@@ -24,6 +24,8 @@ If you want to run prediction experiments you must install pytorch. This is not 
 
 Also, if you want to run experiments you need to scikit and download the [Common Crawl GloVe embeddings](http://nlp.stanford.edu/data/glove.840B.300d.zip) and change your EMBEDDING_LOCATION in the utils.py file to point to where you have them downloaded.
 
+To get the psycholinguistic categories of words and use them as features in the model you will need to acquire the [LIWC 2015 lexicon](https://liwc.wpengine.com/). The file provided is empty.
+
 ## To download your data
 You can download Google Hangouts data from [their takeout page](https://takeout.google.com/settings/takeout) and Facebook data if you follow [their download instructions](https://www.facebook.com/help/302796099745838). Both services will take some time to generate an archive of your data. Your iMessage data is probably stored in ~/Library/Messages/chat.db. Instagram has a link to download your data on their [privacy and security page](https://www.instagram.com/accounts/privacy_and_security/).
 
@@ -64,8 +66,11 @@ INSTAGRAM_PATH = '/path/to/instagram/messages.json'
 
 6. Run 'python get_stats.py -all' which will create spreadsheets in the stats folder and print some output. You can change the START_TIME variable in utils.py to change the time range of messages to look at. It will include all messages sent from this time until the current time. There are separate flags if you do not want to generate all of the information but you will need all of it to generate LaTeX reports.
 
-7. If you have run step 5 with the 'all' flag you can generate a PDF with figures and tables related to your data. Run 'python gen_latex.py' to create this file in the latex subfolder.
-
+## Running the model
+1. To run the model you first have to run 'python make_splits.py -g -t ua' which will create a folder with the data required for the user attribute (ua) prediction.
+2. Next you need to run 'python create_experiment.py -t ua' which will take the data and convert it into a format that can be read into the model. This output can be transferred to another machine to run the experiment and contains no vocabulary file so the data is not readable.
+3. (Optional) Move the tar file to the machine you want to run on and extract the files.
+4. Run the main program with 'python main.py -ua -sa (family|romantic|age|country|gender|school|work) -aur -als -atv -afq -atc -asv -alv -asu -agv' and it will log and print the output of running the model. The '-sa' flag tells it to build a single-attribute model with the specificed attribute. Each of the flags that start with 'a' tells the model which set of features to add. See 'python main.py --help' for details on each.
 
 ## Data format
 The code does not currently support formats other than Google Hangouts, iMessage, Instagram, and Facebook, but if a converter is written the other scripts will read all of the files from the data folder. The converted files should be separated by underscores and the first part should be the format name.

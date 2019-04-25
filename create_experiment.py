@@ -21,7 +21,7 @@ def main():
     parser.add_argument('-u', '--user', dest='user', help='Decide which user should be used for prediction. Input their name. Default is settings[\'my_name\'] from utils.py', default=settings['my_name'], type=str)
     opt = parser.parse_args()
 
-    embed_sets = ['glove_']
+    embed_sets = ['']
 
     if opt.task == '':
         print('Select response time (rt), user attributes (ua), common utterance classification (cu).')
