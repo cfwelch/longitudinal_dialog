@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+title: Prediction in Longitudinal Dialog
+description: Code for analysis of longitudinal dialog and for performing predictions
+show_downloads: true
