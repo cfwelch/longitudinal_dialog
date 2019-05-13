@@ -5,9 +5,9 @@ This is a project to allow people to convert their Google Hangouts, Facebook Mes
 
 ## Publication
 
-More details of experiments run with this code can be found in the [paper](https://arxiv.org/abs/1904.11610).
+More details of experiments run with this code can be found in the [paper about predicting speaker attributes](https://arxiv.org/abs/1904.11610) and the [paper about predicting common messages and response time](http://sentic.net/personal-longitudinal-dialog-data.pdf).
 
-If you use this code please cite:
+If you use this code please cite our two papers:
 
 ```
 @inproceedings{Welch19LookWhosTalking,
@@ -15,6 +15,16 @@ If you use this code please cite:
     title = {Look Who's Talking: Inferring Speaker Attributes from Personal Longitudinal Dialog},
     booktitle = {Proceedings of the 20th International Conference on Computational Linguistics and Intelligent Text Processing (CICLing)},
     address = {La Rochelle, France},
+    year = {2019}
+}
+
+@article{Welch19LearningFromPersonal,
+    author = {Welch, Charlie and P{\'e}rez-Rosas, Ver{\'o}nica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
+    title = {Learning from Personal Longitudinal Dialog Data},
+    journal = {IEEE Intelligent systems},
+    volume = {34},
+    number = {4},
+    publisher = {IEEE},
     year = {2019}
 }
 ```
@@ -82,10 +92,10 @@ INSTAGRAM_PATH = '/path/to/instagram/messages.json'
 6. Run 'python get_stats.py -all' which will create spreadsheets in the stats folder and print some output. You can change the START_TIME variable in utils.py to change the time range of messages to look at. It will include all messages sent from this time until the current time. There are separate flags if you do not want to generate all of the information but you will need all of it to generate LaTeX reports.
 
 ## Running the model
-1. To run the model you first have to run 'python make_splits.py -g -t ua' which will create a folder with the data required for the user attribute (ua) prediction.
-2. Next you need to run 'python create_experiment.py -t ua' which will take the data and convert it into a format that can be read into the model. This output can be transferred to another machine to run the experiment and contains no vocabulary file so the data is not readable.
+1. To run the model you first have to run 'python make_splits.py -g -t task' which will create a folder with the data required for the task, which can be user attribute (ua), common utterance (cu), or response time (rt) prediction.
+2. Next you need to run 'python create_experiment.py -t task' which will take the data and convert it into a format that can be read into the model. This output can be transferred to another machine to run the experiment and contains no vocabulary file so the data is not readable.
 3. (Optional) Move the tar file to the machine you want to run on and extract the files.
-4. Run the main program with 'python main.py -ua -sa (family or romantic or age or country or gender or school or work) -aur -als -atv -afq -atc -asv -alv -asu -agv' and it will log and print the output of running the model. The '-sa' flag tells it to build a single-attribute model with the specificed attribute. Each of the flags that start with 'a' tells the model which set of features to add. See 'python main.py --help' for details on each.
+4. Run the main program. For user attribute prediction use 'python main.py -ua -sa (family or romantic or age or country or gender or school or work) -aur -als -atv -afq -atc -asv -alv -asu -agv' and it will log and print the output of running the model. The '-sa' flag tells it to build a single-attribute model with the specificed attribute. Each of the flags that start with 'a' tells the model which set of features to add. See 'python main.py --help' for details on each. To run response time prediction instead use 'python main.py -rt' and to run common utterance prediction simply leave out the 'rt' and 'ua' flags. Features can be used similarly with any of the three prediction tasks.
 
 ## Data format
 The code does not currently support formats other than Google Hangouts, iMessage, Instagram, and Facebook, but if a converter is written the other scripts will read all of the files from the data folder. The converted files should be separated by underscores and the first part should be the format name.
