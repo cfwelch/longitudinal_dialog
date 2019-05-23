@@ -11,7 +11,7 @@ If you use this code please cite our two papers:
 
 ```
 @inproceedings{Welch19LookWhosTalking,
-    author = {Welch, Charlie and P{\'e}rez-Rosas, Ver{\'o}nica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
+    author = {Welch, Charles and P{\'e}rez-Rosas, Ver{\'o}nica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
     title = {Look Who's Talking: Inferring Speaker Attributes from Personal Longitudinal Dialog},
     booktitle = {Proceedings of the 20th International Conference on Computational Linguistics and Intelligent Text Processing (CICLing)},
     address = {La Rochelle, France},
@@ -19,7 +19,7 @@ If you use this code please cite our two papers:
 }
 
 @article{Welch19LearningFromPersonal,
-    author = {Welch, Charlie and P{\'e}rez-Rosas, Ver{\'o}nica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
+    author = {Welch, Charles and P{\'e}rez-Rosas, Ver{\'o}nica and Kummerfeld, Jonathan K. and Mihalcea, Rada},
     title = {Learning from Personal Longitudinal Dialog Data},
     journal = {IEEE Intelligent systems},
     volume = {34},
